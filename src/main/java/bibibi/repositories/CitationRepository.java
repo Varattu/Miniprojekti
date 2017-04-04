@@ -6,6 +6,7 @@
 package bibibi.repositories;
 
 import bibibi.models.Citation;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,5 +14,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author ola
  */
 public interface CitationRepository extends JpaRepository<Citation, Long> {
-    
 }
