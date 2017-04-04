@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Add citation</title>
+
+    </head>
+    <body>
+        <h3>Fill the form to add a new citation</h3>
+        <br/>
+        <form method="POST" action="">
+            Title:<br/>
+            <input type="text" name="title"/><br/>
+            <br/>
+            Author:<br/>
+            <input type="text" name="author"/><br/>
+            <br/>
+            Year:<br/>
+            <input type="text" name="year"/><br/>
+            <br/>
+            Type:<br/>
+            <input type="radio" name="type" value="article"/> Article<br/>
+            <input type="radio" name="type" value="book"/> Book<br/>
+            <input type="radio" name="type" value="inproceedings"/> Inproceedings<br/>
+            <br/>
+            <input type="submit" value="Add citation"/>
+        </form>
+        
+    </body>
+</html>
