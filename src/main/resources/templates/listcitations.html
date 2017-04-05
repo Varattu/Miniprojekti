@@ -1,25 +1,47 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>List of citations</title>
-        
-        
+        <title>Citations</title>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
     </head>
     <body>
-        <h3>Citations</h3>
-        <br/>
-        <p>Beck, Kent and Andres, Cynthia</p>
-        <p>Extreme Programming Explained: Embrace Change (2nd Edition)</p>
-        <p>2004</p>
-        <br/>
-        <p>Whittington, Keith J.</p>
-        <p>Infusing active learning into introductory programming courses</p>
-        <p>2004</p>
-        <br/>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><a href="#">Extreme Programming Explained: Embrace Change (2nd Edition)</a></td>
+                    <td>Beck, Kent and Andres, Cynthia</td>
+                    <td>2004</td>
+                    <td>Book</td>
+
+
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
