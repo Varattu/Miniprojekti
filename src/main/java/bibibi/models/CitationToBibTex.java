@@ -33,7 +33,11 @@ public class CitationToBibTex {
     }
     
     public String convertBook() {
-        String ret = "@Book{";
+        Stringwriter ret = "@Book{";
+        ret += cite.getTag();
+        ret += ",\n";
+        ret += "author = {";
+        ret += bibtexFormatter.
         
         return ret;
     }

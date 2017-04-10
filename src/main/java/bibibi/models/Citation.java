@@ -16,7 +16,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Citation extends AbstractPersistable<Long> {
     
     // TODO: cleanup this, maybe separate into several classes.
-    private String tag;
+    private String bibtexkey;
     private CitationType type;
     private String author;
     private String title;
@@ -108,12 +108,12 @@ public class Citation extends AbstractPersistable<Long> {
         this.number = number;
     }
 
-    public String getTag() {
-        return tag;
+    public String getBibtexkey() {
+        return bibtexkey;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setBibtexkey(String bibtexkey) {
+        this.bibtexkey = bibtexkey;
     }
-    
+
 }
