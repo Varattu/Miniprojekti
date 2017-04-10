@@ -16,6 +16,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Citation extends AbstractPersistable<Long> {
     
     // TODO: cleanup this, maybe separate into several classes.
+    private String tag;
     private CitationType type;
     private String author;
     private String title;
@@ -105,6 +106,14 @@ public class Citation extends AbstractPersistable<Long> {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
     
 }
