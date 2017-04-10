@@ -34,6 +34,7 @@ public class CitationToBibTexTest {
         cite.setType(CitationType.BOOK);
         cite.setBibtexkey("PAIN14");
         cite.setAuthor("Jules PainOla");
+        cite.setTitle("Pelkoa ja pedagogiikkaa");
         cite.setYear(2014);
         cbt = new CitationToBibTex(cite);
     }
@@ -42,8 +43,9 @@ public class CitationToBibTexTest {
     public void convertWorks() {
         String expectedOutput = "@BOOK{PAIN14,\n" +
                                 "author = {Jules PainOla},\n" +
-                                "{2014},\n" +
-                                "}\n";
+                                "title = {Pelkoa ja pedagogiikkaa},\n" + 
+                                "year = {2014},\n" +
+                                "}\n\n";
         assertEquals(cbt.convert(), expectedOutput);
         
     }
