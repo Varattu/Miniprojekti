@@ -6,21 +6,16 @@ package bibibi.models;
  */
 public class CitationToBibTex {
     Citation cite;
-    
+
     public CitationToBibTex(Citation cite) {
         this.cite = cite;
     }
-    
+
     public String convert() {
-        String ret;
-        switch (cite.getType()) {
-            case ARTICLE : ret = convertArticle();
-            break;
-            case BOOK : ret = convertBook();
-            break;
-            case INPROCEEDINGS : ret = convertInproceedings(); 
-            break;
-        }
+        String ret = "@" + cite.getType() + "{" + cite.getBibtexkey() + ",\n";
+        ret += "author = {" + cite.getAuthor() + "},\n";
+        ret += "{" + cite.getYear() + "},\n";
+        ret += "}\n";
         return ret;
     }
 }
