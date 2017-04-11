@@ -1,7 +1,7 @@
 package bibibi.models;
 
 import bibibi.models.Citation;
-import bibibi.models.CitationToBibTex;
+import bibibi.domain.CitationToBibTex;
 import bibibi.models.CitationType;
 import org.junit.After;
 import org.junit.AfterClass;

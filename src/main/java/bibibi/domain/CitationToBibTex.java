@@ -1,4 +1,6 @@
-package bibibi.models;
+package bibibi.domain;
+
+import bibibi.models.Citation;
 
 /**
  *
