@@ -14,8 +14,10 @@ import static org.junit.Assert.*;
  */
 public class CitationToBibTexTest {
     
-    Citation cite;
+    Citation allfields;
+    Citation fourfields;
     CitationToBibTex cbt;
+    
     
     public CitationToBibTexTest() {
     }
@@ -30,22 +32,28 @@ public class CitationToBibTexTest {
     
     @Before
     public void setUp() {
-        cite = new Citation();
-        cite.setType(CitationType.BOOK);
-        cite.setBibtexkey("PAIN14");
-        cite.setAuthor("Jules PainOla");
-        cite.setTitle("Pelkoa ja pedagogiikkaa");
-        cite.setYear(2014);
-        cite.setPublisher("BassGeek Publishing");
-        cite.setPages("48--66");
-        cite.setAddress("BassGeek Building, USA");
-        cite.setVolume(1);
-        cite.setNumber(77);
-        cbt = new CitationToBibTex(cite);
+        allfields = new Citation();
+        allfields.setType(CitationType.BOOK);
+        allfields.setBibtexkey("PAIN14");
+        allfields.setAuthor("Jules PainOla");
+        allfields.setTitle("Pelkoa ja pedagogiikkaa");
+        allfields.setYear(2014);
+        allfields.setPublisher("BassGeek Publishing");
+        allfields.setPages("48--66");
+        allfields.setAddress("BassGeek Building, USA");
+        allfields.setVolume(1);
+        allfields.setNumber(77);
+
+        fourfields = new Citation();
+        fourfields.setType(CitationType.ARTICLE);
+        fourfields.setBibtexkey("JHWN16");
+        fourfields.setTitle("This is how we do");
+        fourfields.setYear(1972);        
     }
 
     @Test
-    public void convertWorks() {
+    public void convertsAllFields() {
+        cbt = new CitationToBibTex(allfields);
         String expectedOutput = "@BOOK{PAIN14,\n" +
                                 "author = {Jules PainOla},\n" +
                                 "title = {Pelkoa ja pedagogiikkaa},\n" + 
@@ -57,6 +65,14 @@ public class CitationToBibTexTest {
                                 "number = {77},\n" +
                                 "}\n\n";
         assertEquals(cbt.convert(), expectedOutput);
-        
+    }
+    
+    @Test
+    public void convertsFourFields() {
+        cbt = new CitationToBibTex(fourfields);
+        String expectedOutput = "@ARTICLE{JHWN16,\n" + 
+                                "title = {This is how we do},\n" +
+                                "year = {1972},\n" +
+                                "}\n\n";
     }
 }
