@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Information</title>
+    </head>
+    <body>
+        <p>
+            <button class="btn btn-danger">Delete citation</button> <a href="#" class="btn btn-default">Edit citation</a>
+        </p>
+
+        <ul>
+            <li><strong>Title:</strong> th:text="${citation.title}"</li>
+            <li><strong>Author:</strong> th:text="${citation.author}"</li>
+            <li><strong>Year:</strong> th:text="${citation.year}"</li>
+            <li><strong>Publisher:</strong> th:text="${citation.publisher}"</li>
+            <li><strong>Book title:</strong> th:text="${citation.bookTitle}"</li>
+            <li><strong>Pages:</strong> th:text="${citation.pages}"</li>
+            <li><strong>Address:</strong> th:text="${citation.address}"</li>
+            <li><strong>Volume:</strong> th:text="${citation.volume}"</li>
+            <li><strong>Number:</strong> th:text="${citation.number}"</li>
+            <li><strong>Type:</strong> th:text="${citation.type}"</li>
+            <li><strong>BibTex-key:</strong> th:text="${citation.bibtexkey}"</li>
+        </ul>
+    </body>
+</html>

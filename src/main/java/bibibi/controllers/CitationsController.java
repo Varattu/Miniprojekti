@@ -51,7 +51,7 @@ public class CitationsController {
     }
     
     @Transactional
-    @RequestMapping(method=RequestMethod.POST)
+    @RequestMapping(value="/add", method=RequestMethod.POST)
     public String postCitation(@RequestBody Citation citation) {
         citationRepository.save(citation);
         return "redirect:/listcitations";
