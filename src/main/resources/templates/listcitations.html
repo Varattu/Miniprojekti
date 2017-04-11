@@ -33,13 +33,11 @@
 
             <tbody>
 
-                <tr>
-                    <td><a href="#">Extreme Programming Explained: Embrace Change (2nd Edition)</a></td>
-                    <td>Beck, Kent and Andres, Cynthia</td>
-                    <td>2004</td>
-                    <td>Book</td>
-
-
+                <tr th:each="citation : ${citations}">
+                    <td><a href="@{/{id}(id=${citation.id})}" th:text="${citation.title}"></a></td>
+                    <td th:text="${citation.author}"></td>
+                    <td th:text="${citation.year}"></td>
+                    <td th:text="${citation.type}"></td>
                 </tr>
             </tbody>
         </table>
