@@ -16,6 +16,11 @@ public class CitationToBibTex {
         ret += formatAuthor();
         ret += formatTitle();
         ret += formatYear();
+        ret += formatPublisher();
+        ret += formatPages();
+        ret += formatAddress();
+        ret += formatVolume();
+        ret += formatNumber();
         ret += "}\n\n";
         return ret;
     }
@@ -51,7 +56,38 @@ public class CitationToBibTex {
         }
     }
     
+    public String formatPublisher() {
+        if (cite.getAuthor() == null) {
+            return "";
+        }else{
+            return "publisher = {" + cite.getPublisher() + "},\n";
+        }
+    }
     
+    public String formatPages() {
+        if (cite.getAuthor() == null) {
+            return "";
+        }else{
+            return "pages = {" + cite.getPages() + "},\n";
+        }
+    }
+    
+    public String formatAddress() {
+        if (cite.getAddress() == null) {
+            return "";
+        }else{
+            return "adress = {" + cite.getAddress() + "},\n";
+        }
+    }
+    
+    public String formatVolume() {
+        
+        return ("volume = {" + cite.getVolume() + "},\n");
+    }
+    
+    public String formatNumber() {    
+        return ("number = {" + cite.getNumber() + "},\n");
+    }
     
     
 }

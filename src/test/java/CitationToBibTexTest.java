@@ -36,6 +36,11 @@ public class CitationToBibTexTest {
         cite.setAuthor("Jules PainOla");
         cite.setTitle("Pelkoa ja pedagogiikkaa");
         cite.setYear(2014);
+        cite.setPublisher("BassGeek Publishing");
+        cite.setPages("48--66");
+        cite.setAddress("BassGeek Building, USA");
+        cite.setVolume(1);
+        cite.setNumber(77);
         cbt = new CitationToBibTex(cite);
     }
 
@@ -45,6 +50,11 @@ public class CitationToBibTexTest {
                                 "author = {Jules PainOla},\n" +
                                 "title = {Pelkoa ja pedagogiikkaa},\n" + 
                                 "year = {2014},\n" +
+                                "publisher = {BassGeek Publishing},\n" +
+                                "pages = {48--66},\n" +
+                                "adress = {BassGeek Building, USA},\n" +
+                                "volume = {1},\n" +
+                                "number = {77},\n" +
                                 "}\n\n";
         assertEquals(cbt.convert(), expectedOutput);
         
