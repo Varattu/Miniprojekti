@@ -31,13 +31,13 @@ public class CitationsController {
     private CitationRepository citationRepository;
 
     @RequestMapping(method=RequestMethod.GET)
-    public String citations(Model model) {
+    public String getCitations(Model model) {
         model.addAttribute("citations", citationRepository.findAll());
         return "listcitations";
     }
     
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public String citations(Model model, @PathVariable Long id) {
+    public String getCitation(Model model, @PathVariable Long id) {
         Citation citation = citationRepository.findOne(id);
         model.addAttribute("citation", citation);
         return "citation";

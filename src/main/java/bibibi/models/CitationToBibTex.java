@@ -39,11 +39,11 @@ public class CitationToBibTex {
             return "author = {" + cite.getAuthor() + "},\n";
         }
     }
-    
+
     public String formatTitle() {
-        if (cite.getAuthor() == null) {
+        if (cite.getTitle() == null) {
             return "";
-        }else{
+        } else {
             return "title = {" + cite.getTitle() + "},\n";
         }
     }
@@ -81,11 +81,19 @@ public class CitationToBibTex {
     }
     
     public String formatVolume() {
-        return ("volume = {" + cite.getVolume() + "},\n");
+        if (cite.getArticle() != null) {
+            return ("volume = {" + cite.getArticle().getVolume() + "},\n");
+        } else {
+            return "";
+        }
     }
     
-    public String formatNumber() {    
-        return ("number = {" + cite.getNumber() + "},\n");
+    public String formatNumber() {  
+        if (cite.getArticle() != null) {
+            return ("number = {" + cite.getArticle().getNumber()+ "},\n");
+        } else {
+            return "";
+        }
     }
 }
 

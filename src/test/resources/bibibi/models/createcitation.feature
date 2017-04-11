@@ -4,6 +4,6 @@ Feature: As a user I want to add article citations in a human readable form.
     Given User enters title "The Ultimate Meaning of Life"
     And User enters author "Doe, John"
     And User enters year "1952"
-    And User selects type "Article"
+    And User selects type "ARTICLE"
     When User presses Add citation -button
     Then The system gives infomessage about success.

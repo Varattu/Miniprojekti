@@ -22,11 +22,10 @@ public class Citation extends AbstractPersistable<Long> {
     private String title;
     private int year;
     private String publisher;
-    private String bookTitle; //Title of the release this work is a part of, ie. name of the conference it was published in
     private String pages;
     private String address;
-    private int volume;
-    private int number;
+    private Article article;
+    private InProceedings inProceedings;
 
     public CitationType getType() {
         return type;
@@ -35,6 +34,24 @@ public class Citation extends AbstractPersistable<Long> {
     public void setType(CitationType type) {
         this.type = type;
     }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public InProceedings getInProceedings() {
+        return inProceedings;
+    }
+
+    public void setInProceedings(InProceedings inProceedings) {
+        this.inProceedings = inProceedings;
+    }
+
+    
 
     public String getAuthor() {
         return author;
@@ -68,14 +85,6 @@ public class Citation extends AbstractPersistable<Long> {
         this.publisher = publisher;
     }
 
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
-    }
-
     public String getPages() {
         return pages;
     }
@@ -90,22 +99,6 @@ public class Citation extends AbstractPersistable<Long> {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public String getBibtexkey() {

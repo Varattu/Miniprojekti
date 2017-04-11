@@ -42,8 +42,10 @@ public class CitationToBibTexTest {
         allfields.setPublisher("BassGeek Publishing");
         allfields.setPages("48--66");
         allfields.setAddress("BassGeek Building, USA");
-        allfields.setVolume(1);
-        allfields.setNumber(77);
+        Article article = new Article();
+        article.setVolume(1);
+        article.setNumber(77);
+        allfields.setArticle(article);
 
         fourfields = new Citation();
         fourfields.setType(CitationType.ARTICLE);
@@ -75,5 +77,6 @@ public class CitationToBibTexTest {
                                 "title = {This is how we do},\n" +
                                 "year = {1972},\n" +
                                 "}\n\n";
+        assertEquals(cbt.convert(), expectedOutput);
     }
 }
