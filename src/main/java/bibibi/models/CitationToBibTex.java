@@ -81,14 +81,11 @@ public class CitationToBibTex {
     }
     
     public String formatVolume() {
-        
         return ("volume = {" + cite.getVolume() + "},\n");
     }
     
     public String formatNumber() {    
         return ("number = {" + cite.getNumber() + "},\n");
     }
-    
-    
 }
 

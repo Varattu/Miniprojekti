@@ -1,3 +1,5 @@
+package bibibi.models;
+
 import bibibi.models.Citation;
 import bibibi.models.CitationToBibTex;
 import bibibi.models.CitationType;
@@ -17,7 +19,6 @@ public class CitationToBibTexTest {
     Citation allfields;
     Citation fourfields;
     CitationToBibTex cbt;
-    
     
     public CitationToBibTexTest() {
     }

@@ -6,4 +6,4 @@ Feature: As a user I want to add article citations in a human readable form.
     And User enters year "1952"
     And User selects type "Article"
     When User presses Add citation -button
-    Then The user gives infomessage about success.
+    Then The system gives infomessage about success.
