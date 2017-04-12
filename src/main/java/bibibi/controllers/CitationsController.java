@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +41,7 @@ public class CitationsController {
     public String getCitation(Model model, @PathVariable Long id) {
         Citation citation = citationRepository.findOne(id);
         model.addAttribute("citation", citation);
-        return "citation";
+        return "citationinfo";
     }
     
     @Transactional
@@ -50,11 +51,19 @@ public class CitationsController {
         return "redirect:/listcitations";
     }
     
+    @RequestMapping(value="/add", method=RequestMethod.GET)
+    public String getAddingPage(Model model) {
+        model.addAttribute(new Citation());
+        return "addcitation";
+    }
+    
     @Transactional
     @RequestMapping(value="/add", method=RequestMethod.POST)
-    public String postCitation(@RequestBody Citation citation) {
+    public String postCitation(@ModelAttribute Citation citation) {
         citationRepository.save(citation);
         return "redirect:/listcitations";
     }
+    
+    
 
 }
