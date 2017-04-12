@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <h3>Fill the form to add a new citation</h3>
         <br/>
-        <form th:action="@{/citations/add}" th:object="${citation}" method="POST">
+        <form method="POST" th:action="@{/add}" th:object="${citation}" >
             Title:<br/>
             <input type="text" th:field="*{title}"/><br/>
             <br/>
@@ -23,14 +23,9 @@ and open the template in the editor.
             <input type="text" th:field="*{year}"/><br/>
             <br/>
             Type:<br/>
-            <select th:field="*{type}">
-                <option th:each="type : ${T(bibibi.models.CitationType).values()}"
-                    th:value="${type}" th:text="${type.displayName}">
-                </option>
-            </select>
-<!--            <input type="radio" th:field="*{type}" value="article"/> Article<br/>
+            <input type="radio" th:field="*{type}" value="article"/> Article<br/>
             <input type="radio" th:field="*{type}" value="book"/> Book<br/>
-            <input type="radio" th:field="*{type}" value="inproceedings"/> Inproceedings<br/>-->
+            <input type="radio" th:field="*{type}" value="inproceedings"/> Inproceedings<br/>
             <br/>
             <input type="submit" value="Add citation"/>
         </form>

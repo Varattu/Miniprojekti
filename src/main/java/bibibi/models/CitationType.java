@@ -10,17 +10,5 @@ package bibibi.models;
  * @author ola
  */
 public enum CitationType {
-    ARTICLE("Article"),
-    BOOK("Book"),
-    INPROCEEDINGS("In Proceedings");
-    
-    private final String displayName;
-    
-    private CitationType(String displayName) {
-        this.displayName = displayName;
-    }
-    
-    public String getDisplayName() {
-        return displayName;
-    }
+    ARTICLE, BOOK, INPROCEEDINGS
 }

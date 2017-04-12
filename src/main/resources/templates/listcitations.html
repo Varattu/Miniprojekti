@@ -34,14 +34,12 @@
             <tbody>
 
                 <tr th:each="citation : ${citations}">
-                    <td><a th:href="@{/citations/{id}(id=${citation.id})}" th:text="${citation.title}"></a></td>
+                    <td><a href="@{/{id}(id=${citation.id})}" th:text="${citation.title}"></a></td>
                     <td th:text="${citation.author}"></td>
                     <td th:text="${citation.year}"></td>
-                    <td th:text="${citation.type.displayName}"></td>
+                    <td th:text="${citation.type}"></td>
                 </tr>
             </tbody>
         </table>
-        
-        <a href="/citations/add">Add a new citation</a>
     </body>
 </html>
