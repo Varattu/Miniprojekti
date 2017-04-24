@@ -6,6 +6,7 @@
 package bibibi.models;
 
 import javax.persistence.Entity;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  */
 @Entity
 public class InProceedings extends AbstractPersistable<Long> {
+    @NotBlank
     private String booktitle;
 
     public String getBooktitle() {

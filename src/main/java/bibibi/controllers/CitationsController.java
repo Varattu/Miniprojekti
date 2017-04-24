@@ -8,11 +8,13 @@ package bibibi.controllers;
 import bibibi.models.Citation;
 import bibibi.repositories.CitationRepository;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -59,7 +61,10 @@ public class CitationsController {
     
     @Transactional
     @RequestMapping(value="/add", method=RequestMethod.POST)
-    public String postCitation(@ModelAttribute Citation citation) {
+    public String postCitation(@Valid @ModelAttribute Citation citation, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addcitation";
+        }
         citationRepository.save(citation);
         return "redirect:/listcitations";
     }

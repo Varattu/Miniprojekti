@@ -6,6 +6,8 @@
 package bibibi.models;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Min;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
@@ -14,8 +16,12 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  */
 @Entity
 public class Article extends AbstractPersistable<Long> {
+    @NotBlank
     private String journal;
+    
+    @Min(1)
     private int volume;
+    @Min(1)
     private int number;
 
     public String getJournal() {

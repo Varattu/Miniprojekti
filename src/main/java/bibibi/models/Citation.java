@@ -6,6 +6,10 @@
 package bibibi.models;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
@@ -17,9 +21,19 @@ public class Citation extends AbstractPersistable<Long> {
     
     // TODO: cleanup this, maybe separate into several classes.
     private String bibtexkey;
+    
+    @NotNull
     private CitationType type;
+    
+    @NotBlank
     private String author;
+    
+    @NotBlank
     private String title;
+    
+    @NotNull
+    @Min(1900)
+    @Max(2020)
     private int year;
     private String publisher;
     private String pages;
