@@ -6,6 +6,7 @@
 package bibibi.controllers;
 
 import bibibi.models.Citation;
+import bibibi.models.CitationType;
 import bibibi.repositories.CitationRepository;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -40,6 +41,7 @@ public class CitationsTest {
         citation.setAuthor("Guy, Some");
         citation.setTitle("Best paper eva!");
         citation.setYear(2018);
+        citation.setType(CitationType.ARTICLE);
     }
     
     @After
