@@ -5,12 +5,16 @@
  */
 package bibibi.controllers;
 
+import bibibi.domain.BibWriter;
 import bibibi.models.Citation;
 import bibibi.repositories.CitationRepository;
+import java.io.IOException;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -69,6 +74,11 @@ public class CitationsController {
         return "redirect:/listcitations";
     }
     
-    
-
+    @RequestMapping(value = "/export", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @ResponseBody
+    public FileSystemResource getFile() throws IOException {
+        BibWriter bw = new BibWriter("export", this.citationRepository.findAll());
+        bw.writeFile();
+        return new FileSystemResource(bw.getFile()); 
+    }
 }
