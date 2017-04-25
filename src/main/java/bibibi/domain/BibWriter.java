@@ -2,8 +2,10 @@ package bibibi.domain;
 
 import bibibi.models.Citation;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -29,5 +31,9 @@ public class BibWriter {
         }
         writer.flush();
         writer.close();
+    }
+    
+    public InputStream getInputStream() throws IOException {
+        return new FileInputStream(this.file);
     }
 }

@@ -23,6 +23,7 @@ import static org.junit.Assert.*;
 public class BibWriterTest {
     
     Citation first;
+    Citation second;
     BibWriter writer;
     
     public BibWriterTest() {
@@ -37,12 +38,21 @@ public class BibWriterTest {
     first.setTitle("Clean Code: A Handbook of Agile Software Craftsmanship");
     first.setYear(2008);
     first.setPublisher("Prentice Hall");
+    
+    second = new Citation();
+    second.setType(CitationType.BOOK);
+    second.setBibtexkey("FDJS54");
+    second.setAuthor("Martini, Robert");
+    second.setTitle("A Handbook of Agile Software Craftsmanship");
+    second.setYear(2008);
+    second.setPublisher("Prentice Hall");
     }
     
     @Test
     public void writeOneEntry() throws IOException {
         ArrayList<Citation> citations = new ArrayList<>();
         citations.add(first);
+        citations.add(second);
         writer = new BibWriter("samplefile", citations);
         writer.writeFile();
     }
