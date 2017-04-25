@@ -5,10 +5,15 @@
  */
 package bibibi.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -19,13 +24,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Citation extends AbstractPersistable<Long> {
     
-    // TODO: cleanup this, maybe separate into several classes.
+    // TODO: validation for this field as well after decided if it's automatically generated or not
     private String bibtexkey;
     
     @NotNull
     private CitationType type;
     
     @NotBlank
+    @Pattern(regexp = "([A-ZÅÄÖ][a-zåäö]*, [A-ZÅÄÖ]; )*([A-ZÅÄÖ][a-zåäö]*, [A-ZÅÄÖ])+",
+            message = "Authors must be in the correct format (Last name, Initial of first name. Different authors seperated with ;")
     private String author;
     
     @NotBlank
@@ -38,7 +45,9 @@ public class Citation extends AbstractPersistable<Long> {
     private String publisher;
     private String pages;
     private String address;
+    
     private Article article;
+    
     private InProceedings inProceedings;
 
     public CitationType getType() {

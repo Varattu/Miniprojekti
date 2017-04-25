@@ -14,4 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author ola
  */
 public interface CitationRepository extends JpaRepository<Citation, Long> {
+    List<Citation> findByTitle(String title);
 }

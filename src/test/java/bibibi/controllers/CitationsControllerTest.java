@@ -8,6 +8,7 @@ package bibibi.controllers;
 import bibibi.models.Citation;
 import bibibi.models.CitationType;
 import bibibi.repositories.CitationRepository;
+import java.util.List;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -50,7 +51,7 @@ public class CitationsControllerTest {
     public void setUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
         Citation citation = new Citation();
-        citation.setAuthor("Guy, Some");
+        citation.setAuthor("Guy, S");
         citation.setTitle("Cool Title");
         citation.setYear(2012);
         citation.setType(CitationType.ARTICLE);
@@ -59,6 +60,7 @@ public class CitationsControllerTest {
     
     @After
     public void tearDown() {
+        crepo.deleteAll();
     }
 
     // TODO add test methods here.
@@ -77,6 +79,48 @@ public class CitationsControllerTest {
         
         String content = res.getResponse().getContentAsString();
         assertTrue(content.contains("Cool Title"));
-        assertTrue(content.contains("Guy, Some"));
+        assertTrue(content.contains("Guy, S"));
+    }
+    
+    @Test
+    public void addCitationPageDisplayedCorrectly() throws Exception {
+        MvcResult res = mockMvc.perform(get("/citations/add"))
+                .andReturn();
+        
+        String content = res.getResponse().getContentAsString();
+        assertTrue(content.contains("Fill the form to add a new citation"));
+        assertTrue(content.contains("Title:"));
+    }
+    
+    @Test
+    public void postingCitationWorksWithValidParameters() throws Exception {
+        mockMvc.perform(post("/citations/add").param("title", "Great title")
+                .param("author", "Guy, S").param("year", "2012")
+                .param("type", "ARTICLE"))
+                .andExpect(redirectedUrl("/listcitations"));
+        
+        
+        Citation saved = crepo.findByTitle("Great title").get(0);
+        
+        assertNotNull(saved);
+        assertEquals("Great title", saved.getTitle());
+        assertEquals("Guy, S", saved.getAuthor());
+    }
+    
+    @Test
+    public void postingCitationDoesntWorkWithInvalidParameters() throws Exception {
+        MvcResult res = mockMvc.perform(post("/citations/add").param("title", "Great title")
+                .param("author", "Guy, Some").param("year", "2012")
+                .param("type", "ARTICLE"))
+                .andReturn();
+        
+        String content = res.getResponse().getContentAsString();
+        assertTrue(content.contains("Fill the form to add a new citation"));
+        assertTrue(content.contains("Title:"));
+        assertTrue(content.contains("Authors must be in the correct format"));
+        
+        List<Citation> saved = crepo.findByTitle("Great title");
+        
+        assertEquals(0, saved.size());
     }
 }
