@@ -33,10 +33,6 @@ public class BibWriter {
         writer.close();
     }
     
-    public InputStream getInputStream() throws IOException {
-        return new FileInputStream(this.file);
-    }
-    
     public File getFile() {
         return this.file;
     }
