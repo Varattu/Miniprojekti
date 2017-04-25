@@ -10,10 +10,13 @@ import bibibi.models.Citation;
 import bibibi.repositories.CitationRepository;
 import java.io.IOException;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,11 +77,25 @@ public class CitationsController {
         return "redirect:/listcitations";
     }
     
-    @RequestMapping(value = "/export", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    @ResponseBody
-    public FileSystemResource getFile() throws IOException {
+//    @RequestMapping(value = "/export/{fileName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+//    @ResponseBody
+//    public FileSystemResource getFile(@PathVariable("fileName") String fileName) throws IOException {
+//        BibWriter bw = new BibWriter("export", this.citationRepository.findAll());
+//        bw.writeFile();
+//        FileSystemResource export = new FileSystemResource(bw.getFile());
+//        return export; 
+//    }
+    
+    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    public HttpEntity<FileSystemResource> getFile() throws IOException {
         BibWriter bw = new BibWriter("export", this.citationRepository.findAll());
         bw.writeFile();
-        return new FileSystemResource(bw.getFile()); 
+        
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + bw.getFile().getName());
+        header.setContentLength(bw.getFile().length());
+        
+        return new HttpEntity<>(new FileSystemResource(bw.getFile()), header);
     }
 }
