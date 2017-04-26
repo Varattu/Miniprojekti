@@ -7,32 +7,94 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Add citation</title>
-
+       <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+       <script>
+           $(document).ready(function(){
+              
+              function changeView(){
+                 var value = $("#citationType").val();
+                 $("#volume").hide();
+                 $("#journal").hide();
+                 $("#booktitle").hide();
+                 $("#publisher").hide();
+                if(value=="ARTICLE"){
+                     $("#journal").show();
+                     $("#volume").show();
+                 }
+                 else if(value=="INPROCEEDINGS"){
+                     $("#booktitle").show();
+                    
+                }
+                 else if(value=="BOOK"){
+                     $("#publisher").show();
+                 } 
+              }
+              changeView(); 
+              $("#citationType").change(changeView);
+           });
+       </script>
     </head>
     <body>
         <h3>Fill the form to add a new citation</h3>
         <br/>
         <form th:action="@{/citations/add}" th:object="${citation}" method="POST">
-            Title:
-            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red">Title error</span><br/>
-            <input type="text" th:field="*{title}"/><br/>
-            <br/>
-            Author:<br/>
-            <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color:red">Title error</span><br/>
-            <input type="text" th:field="*{author}"/><br/>
-            <br/>
-            Year:
-            <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" style="color:red">Title error</span><br/>
-            <input type="number" value="1900" th:field="*{year}" min="1900" max="2020"/><br/>
-            <br/>
+            <div id="type">
             Type:
             <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}" style="color:red">Title error</span><br/>
-            <select th:field="*{type}">
+            <select  id="citationType" th:field="*{type}">
                 <option th:each="type : ${T(bibibi.models.CitationType).values()}"
                     th:value="${type}" th:text="${type.displayName}">
                 </option>
             </select>
             <br/>
+            </div>
+            
+            <div id="title">
+            Title:
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red">Title error</span><br/>
+            <input type="text" th:field="*{title}"/><br/>
+            <br/>
+            </div>
+            
+            <div id="author">
+            Author:<br/>
+            <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color:red">Title error</span><br/>
+            <input type="text" th:field="*{author}"/><br/>
+            <br/>
+            </div>
+            
+            <div id="journal">
+            Journal:
+            <span th:if="${#fields.hasErrors('article.journal')}" th:errors="*{article.journal}" style="color:red">Title error</span><br/>
+            <input type="text" th:field="*{article.journal}"/><br/>
+            <br/>
+            </div>
+            
+            <div id="volume">
+            Volume:
+            <span th:if="${#fields.hasErrors('article.volume')}" th:errors="*{article.volume}" style="color:red">Title error</span><br/>
+            <input type="number" th:field="*{article.volume}" min="0"/><br/>
+            <br/>
+            </div>
+            <div id="publisher">
+                Publisher:
+                <span th:if="${#fields.hasErrors('book.publisher')}" th:errors="*{book.publisher}" style="color:red">Title error</span><br/>
+                <input type="text" th:field="*{book.publisher}"/><br/>
+                <br/>
+            </div>
+            <div id="booktitle">
+            Booktitle:
+            <span th:if="${#fields.hasErrors('inProceedings.booktitle')}" th:errors="*{inProceedings.booktitle}" style="color:red">Title error</span><br/>
+            <input type="text" th:field="*{inProceedings.booktitle}"/><br/>
+            <br/>
+            </div>
+            <div id="year">
+            Year:
+            <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" style="color:red">Title error</span><br/>
+            <input type="number" value="1900" th:field="*{year}" min="1900" max="2020"/><br/>
+            <br/>
+            </div>
+            
             <input type="submit" value="Add citation"/>
         </form>
         

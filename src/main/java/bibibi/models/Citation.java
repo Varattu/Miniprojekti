@@ -49,6 +49,8 @@ public class Citation extends AbstractPersistable<Long> {
     private Article article;
     
     private InProceedings inProceedings;
+    
+    private Book book;
 
     public CitationType getType() {
         return type;
@@ -66,6 +68,14 @@ public class Citation extends AbstractPersistable<Long> {
         this.article = article;
     }
 
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+    
     public InProceedings getInProceedings() {
         return inProceedings;
     }
