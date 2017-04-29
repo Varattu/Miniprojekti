@@ -7,6 +7,7 @@ import bibibi.models.Citation;
  * @author akkuJii
  */
 public class CitationToBibTex {
+
     Citation cite;
 
     public CitationToBibTex(Citation cite) {
@@ -24,78 +25,87 @@ public class CitationToBibTex {
         ret += formatVolume();
         ret += formatNumber();
         ret += "}\n\n";
+        ret = replaceScandicCharacters(ret);
         return ret;
     }
-    
-    public String formatTypeAndBibtexKey() {
+
+    private String formatTypeAndBibtexKey() {
         String ret = "@";
         ret += cite.getType() == null ? "" : cite.getType().toString();
         ret += "{" + cite.getBibtexkey() + ",\n";
         return ret;
     }
-    
-    public String formatAuthor() {
+
+    private String formatAuthor() {
         if (cite.getAuthor() == null) {
             return "";
-        }else{
+        } else {
             return "author = {" + cite.getAuthor() + "},\n";
         }
     }
 
-    public String formatTitle() {
+    private String formatTitle() {
         if (cite.getTitle() == null) {
             return "";
         } else {
             return "title = {" + cite.getTitle() + "},\n";
         }
     }
-    
-    public String formatYear() {
+
+    private String formatYear() {
         if (cite.getYear() == 0) {
             return "";
-        }else{
+        } else {
             return ("year = {" + cite.getYear() + "},\n");
         }
     }
-    
-    public String formatPublisher() {
+
+    private String formatPublisher() {
         if (cite.getAuthor() == null) {
             return "";
-        }else{
+        } else {
             return "publisher = {" + cite.getPublisher() + "},\n";
         }
     }
-    
-    public String formatPages() {
+
+    private String formatPages() {
         if (cite.getAuthor() == null) {
             return "";
-        }else{
+        } else {
             return "pages = {" + cite.getPages() + "},\n";
         }
     }
-    
-    public String formatAddress() {
+
+    private String formatAddress() {
         if (cite.getAddress() == null) {
             return "";
-        }else{
+        } else {
             return "adress = {" + cite.getAddress() + "},\n";
         }
     }
-    
-    public String formatVolume() {
+
+    private String formatVolume() {
         if (cite.getArticle() != null) {
             return ("volume = {" + cite.getArticle().getVolume() + "},\n");
         } else {
             return "";
         }
     }
-    
-    public String formatNumber() {  
+
+    private String formatNumber() {
         if (cite.getArticle() != null) {
-            return ("number = {" + cite.getArticle().getNumber()+ "},\n");
+            return ("number = {" + cite.getArticle().getNumber() + "},\n");
         } else {
             return "";
         }
     }
-}
 
+    private String replaceScandicCharacters(String cit) {
+        cit = cit.replace("å", "\\aa");
+        cit = cit.replace("Å", "\\AA");
+        cit = cit.replace("ä", "\\\"{a}");
+        cit = cit.replace("ö", "\\\"{o}");
+        cit = cit.replace("Ä", "\\\"{A}");
+        return cit.replace("Ö", "\\\"{O}");
+    }
+}
