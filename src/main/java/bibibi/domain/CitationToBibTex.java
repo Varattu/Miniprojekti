@@ -7,6 +7,7 @@ import bibibi.models.Citation;
  * @author akkuJii
  */
 public class CitationToBibTex {
+
     Citation cite;
 
     public CitationToBibTex(Citation cite) {
@@ -26,76 +27,50 @@ public class CitationToBibTex {
         ret += "}\n\n";
         return ret;
     }
-    
+
     public String formatTypeAndBibtexKey() {
         String ret = "@";
         ret += cite.getType() == null ? "" : cite.getType().toString();
         ret += "{" + cite.getBibtexkey() + ",\n";
         return ret;
     }
-    
+
     public String formatAuthor() {
-        if (cite.getAuthor() == null) {
-            return "";
-        }else{
-            return "author = {" + cite.getAuthor() + "},\n";
-        }
+        return cite.getAuthor() == null ? ""
+                : "author = {" + cite.getAuthor() + "},\n";
     }
 
     public String formatTitle() {
-        if (cite.getTitle() == null) {
-            return "";
-        } else {
-            return "title = {" + cite.getTitle() + "},\n";
-        }
+        return cite.getTitle() == null ? ""
+                : "title = {" + cite.getTitle() + "},\n";
     }
-    
+
     public String formatYear() {
-        if (cite.getYear() == 0) {
-            return "";
-        }else{
-            return ("year = {" + cite.getYear() + "},\n");
-        }
+        return cite.getYear() == 0 ? "" : "year = {" + cite.getYear() + "},\n";
     }
-    
+
     public String formatPublisher() {
-        if (cite.getAuthor() == null) {
-            return "";
-        }else{
-            return "publisher = {" + cite.getPublisher() + "},\n";
-        }
+        return cite.getPublisher() == null ? ""
+                : "publisher = {" + cite.getPublisher() + "},\n";
     }
-    
+
     public String formatPages() {
-        if (cite.getAuthor() == null) {
-            return "";
-        }else{
-            return "pages = {" + cite.getPages() + "},\n";
-        }
+        return cite.getAuthor() == null ? ""
+                : "pages = {" + cite.getPages() + "},\n";
     }
-    
+
     public String formatAddress() {
-        if (cite.getAddress() == null) {
-            return "";
-        }else{
-            return "adress = {" + cite.getAddress() + "},\n";
-        }
+        return cite.getAddress() == null ? ""
+                : "adress = {" + cite.getAddress() + "},\n";
     }
-    
+
     public String formatVolume() {
-        if (cite.getArticle() != null) {
-            return ("volume = {" + cite.getArticle().getVolume() + "},\n");
-        } else {
-            return "";
-        }
+        return cite.getArticle() == null ? ""
+                : "volume = {" + cite.getArticle().getVolume() + "},\n";
     }
-    
-    public String formatNumber() {  
-        if (cite.getArticle() != null) {
-            return ("number = {" + cite.getArticle().getNumber()+ "},\n");
-        } else {
-            return "";
-        }
+
+    public String formatNumber() {
+        return cite.getArticle() == null ? ""
+                : "number = {" + cite.getArticle().getNumber() + "},\n";
     }
 }
-
