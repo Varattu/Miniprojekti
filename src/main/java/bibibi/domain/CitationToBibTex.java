@@ -61,7 +61,7 @@ public class CitationToBibTex {
     }
 
     private String formatPublisher() {
-        if (cite.getAuthor() == null) {
+        if (cite.getPublisher()== null) {
             return "";
         } else {
             return "publisher = {" + cite.getPublisher() + "},\n";
@@ -69,7 +69,7 @@ public class CitationToBibTex {
     }
 
     private String formatPages() {
-        if (cite.getAuthor() == null) {
+        if (cite.getPages()== null) {
             return "";
         } else {
             return "pages = {" + cite.getPages() + "},\n";
