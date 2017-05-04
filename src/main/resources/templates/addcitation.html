@@ -49,6 +49,13 @@ and open the template in the editor.
             <br/>
             </div>
             
+            <div id='bibtexkey'>
+                BibTex key
+                <span th:if="${#fields.hasErrors('bibtexkey')}" th:errors="*{bibtexkey}" style="color:red">Title error</span><br/>
+                <input type="text" th:field="*{bibtexkey}"/><br/>
+                <br/>
+            </div>
+
             <div id="title">
             Title:
             <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red">Title error</span><br/>

@@ -5,11 +5,6 @@
  */
 package bibibi.models;
 
-import bibibi.models.Article;
-import bibibi.models.Citation;
-import bibibi.models.CitationType;
-import bibibi.models.InProceedings;
-import bibibi.repositories.ArticleRepository;
 import bibibi.repositories.CitationRepository;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -17,7 +12,6 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -51,6 +45,7 @@ public class CitationsTest {
     @Before
     public void setUp() {
         citation = new Citation();
+        citation.setBibtexkey("Guy2018");
         citation.setAuthor("Guy, S");
         citation.setTitle("Best paper eva!");
         citation.setYear(2018);
@@ -76,6 +71,7 @@ public class CitationsTest {
     @Test
     public void citationWithNoAuthorIsntSavedInTheDatabase() {
         citation = new Citation();
+        citation.setBibtexkey("Some2012");
         citation.setTitle("Best paper eva!");
         citation.setYear(2018);
         citation.setType(CitationType.ARTICLE);
@@ -91,6 +87,7 @@ public class CitationsTest {
     @Test
     public void citationWithNoTitleIsntSavedInTheDatabase() {
         citation = new Citation();
+        citation.setBibtexkey("Guy2018");
         citation.setAuthor("Guy, S");
         citation.setYear(2018);
         citation.setType(CitationType.ARTICLE);
@@ -106,6 +103,7 @@ public class CitationsTest {
     @Test
     public void citationWithNoTypeIsntSavedInTheDatabase() {
         citation = new Citation();
+        citation.setBibtexkey("Guy2012");
         citation.setAuthor("Guy, S");
         citation.setTitle("Epic title");
         citation.setYear(2012);

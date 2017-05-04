@@ -51,6 +51,7 @@ public class CitationsControllerTest {
     public void setUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
         Citation citation = new Citation();
+        citation.setBibtexkey("Guy2012");
         citation.setAuthor("Guy, S");
         citation.setTitle("Cool Title");
         citation.setYear(2012);
@@ -94,7 +95,9 @@ public class CitationsControllerTest {
     
     @Test
     public void postingCitationWorksWithValidParameters() throws Exception {
-        mockMvc.perform(post("/citations/add").param("title", "Great title")
+        mockMvc.perform(post("/citations/add")
+                .param("bibtexkey", "Guy2012")
+                .param("title", "Great title")
                 .param("author", "Guy, S").param("year", "2012")
                 .param("type", "ARTICLE"))
                 .andExpect(redirectedUrl("/listcitations"));
@@ -122,5 +125,19 @@ public class CitationsControllerTest {
         List<Citation> saved = crepo.findByTitle("Great title");
         
         assertEquals(0, saved.size());
+    }
+    
+    @Test
+    public void showingExistingCitationWorks() throws Exception {
+        Citation savedCit = crepo.findByTitle("Cool Title").get(0);
+        System.out.println("/citations/"+savedCit.getId().toString());
+        MvcResult res = mockMvc.perform(get("/citations/"+savedCit.getId().toString())).andReturn();
+        
+        String content = res.getResponse().getContentAsString();
+        assertTrue(content.contains(savedCit.getTitle()));
+        assertTrue(content.contains(savedCit.getAuthor()));
+        assertTrue(content.contains(savedCit.getBibtexkey()));
+        assertTrue(content.contains("Delete citation"));
+        assertTrue(content.contains("Edit citation"));
     }
 }
