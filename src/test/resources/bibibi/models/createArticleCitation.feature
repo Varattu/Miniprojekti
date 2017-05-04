@@ -1,9 +1,16 @@
 Feature: As a user I want to add article citations in a human readable form.
 
-  Scenario: User can create a new citation
-    Given User enters title "The Ultimate Meaning of Life"
-    And User enters author "Doe, John"
-    And User enters year "1952"
-    And User selects type "ARTICLE"
-    When User presses Add citation -button
-    Then The system gives infomessage about success.
+  Scenario: User can set a title for an article citation
+    Given New citation is initialized
+    When User enters article title "Example Title"
+    Then The title of a article should be "Example Title"
+
+  Scenario: User can set author for an article citation
+    Given New citation is initialized
+    When User enters article author "Kenny, G"
+    Then The author of an article should be "Kenny, G"
+
+    Scenario: User can set year for an article citation
+        Given New citation is initialized
+        When User enters article author "Kenny, G"
+        Then The author of an article citation should be "Kenny, G"
